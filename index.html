@@ -316,64 +316,32 @@
     .phone-glow {
       position: absolute;
       width: 360px; height: 360px;
-      background: radial-gradient(circle, rgba(108,99,255,0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%);
       border-radius: 50%;
       animation: glow-pulse 3s ease-in-out infinite;
+      pointer-events: none;
     }
 
     @keyframes glow-pulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.1); opacity: 1; }
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.15); opacity: 1; }
     }
 
-    .phones-duo {
+    .phone-single {
       position: relative;
-      width: 340px;
-      height: 480px;
       z-index: 2;
+      animation: float-phone 4s ease-in-out infinite;
+      filter: drop-shadow(0 40px 60px rgba(108,99,255,0.35)) drop-shadow(0 20px 40px rgba(0,0,0,0.6));
     }
 
-    .phone-real {
-      position: absolute;
-      border-radius: 36px;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
-    }
-
-    .phone-real img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .phone-single img {
+      width: 260px;
       display: block;
     }
 
-    .phone-back {
-      width: 200px;
-      height: 400px;
-      top: 60px;
-      right: 0;
-      animation: float-back 5s ease-in-out infinite;
-      z-index: 1;
-      opacity: 0.85;
-    }
-
-    .phone-front {
-      width: 220px;
-      height: 440px;
-      top: 20px;
-      left: 0;
-      animation: float-front 4s ease-in-out infinite;
-      z-index: 2;
-    }
-
-    @keyframes float-front {
-      0%, 100% { transform: translateY(0px) rotate(-1deg); }
-      50% { transform: translateY(-14px) rotate(1deg); }
-    }
-
-    @keyframes float-back {
-      0%, 100% { transform: translateY(0px) rotate(3deg); }
-      50% { transform: translateY(-8px) rotate(5deg); }
+    @keyframes float-phone {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      50% { transform: translateY(-16px) rotate(1.5deg); }
     }
 
     .float-card {
@@ -970,16 +938,11 @@
         </div>
       </div>
 
-      <!-- Phone Mockup con imágenes reales -->
+      <!-- Phone Mockup con imagen real de la app -->
       <div class="hero-phone-wrap">
         <div class="phone-glow"></div>
-        <div class="phones-duo">
-          <div class="phone-real phone-back">
-            <img src="./app-level.png" alt="Pantalla de nivel de Gemlish" />
-          </div>
-          <div class="phone-real phone-front">
-            <img src="./app-home.png" alt="Pantalla principal de Gemlish" />
-          </div>
+        <div class="phone-single">
+          <img src="./app-home.png" alt="Pantalla principal de Gemlish" />
         </div>
         <div class="float-card float-card-1">
           <div class="float-card-icon">🔥</div>
