@@ -74,13 +74,17 @@
     .nav-logo-gem {
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
       border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
+      overflow: hidden;
+      flex-shrink: 0;
       box-shadow: 0 0 20px rgba(108,99,255,0.5);
+    }
+
+    .nav-logo-gem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .nav-links {
@@ -306,12 +310,13 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      min-height: 520px;
     }
 
     .phone-glow {
       position: absolute;
-      width: 320px; height: 320px;
-      background: radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%);
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(108,99,255,0.25) 0%, transparent 70%);
       border-radius: 50%;
       animation: glow-pulse 3s ease-in-out infinite;
     }
@@ -321,150 +326,54 @@
       50% { transform: scale(1.1); opacity: 1; }
     }
 
-    .phone-mockup {
+    .phones-duo {
       position: relative;
-      width: 260px;
-      animation: float 4s ease-in-out infinite;
+      width: 340px;
+      height: 480px;
       z-index: 2;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(-2deg); }
-      50% { transform: translateY(-16px) rotate(2deg); }
-    }
-
-    .phone-frame {
-      background: linear-gradient(145deg, #1a1a2e, #16213e);
-      border-radius: 40px;
-      padding: 12px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.1);
-    }
-
-    .phone-screen {
-      background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
-      border-radius: 30px;
-      overflow: hidden;
-      aspect-ratio: 9/19;
-      position: relative;
-    }
-
-    .phone-notch {
+    .phone-real {
       position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 80px; height: 24px;
-      background: #07080F;
-      border-radius: 0 0 16px 16px;
-      z-index: 10;
-    }
-
-    .phone-ui {
-      padding: 32px 16px 16px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .phone-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 4px;
-    }
-
-    .phone-level-badge {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
-      font-size: 9px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
-
-    .phone-xp {
-      font-size: 9px;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    .phone-question {
-      background: rgba(108,99,255,0.15);
-      border: 1px solid rgba(108,99,255,0.3);
-      border-radius: 14px;
-      padding: 12px;
-      text-align: center;
-    }
-
-    .phone-question-label {
-      font-size: 8px;
-      color: var(--primary-light);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-    }
-
-    .phone-question-text {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .phone-options {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .phone-option {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 8px 12px;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .phone-option.correct {
-      background: rgba(74,222,128,0.15);
-      border-color: rgba(74,222,128,0.4);
-      color: var(--accent2);
-    }
-
-    .phone-option-letter {
-      width: 18px; height: 18px;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .phone-option.correct .phone-option-letter {
-      background: rgba(74,222,128,0.3);
-    }
-
-    .phone-progress-bar {
-      height: 4px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 2px;
+      border-radius: 36px;
       overflow: hidden;
-      margin-top: auto;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.1);
     }
 
-    .phone-progress-fill {
+    .phone-real img {
+      width: 100%;
       height: 100%;
-      width: 65%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 2px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .phone-back {
+      width: 200px;
+      height: 400px;
+      top: 60px;
+      right: 0;
+      animation: float-back 5s ease-in-out infinite;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    .phone-front {
+      width: 220px;
+      height: 440px;
+      top: 20px;
+      left: 0;
+      animation: float-front 4s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes float-front {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50% { transform: translateY(-14px) rotate(1deg); }
+    }
+
+    @keyframes float-back {
+      0%, 100% { transform: translateY(0px) rotate(3deg); }
+      50% { transform: translateY(-8px) rotate(5deg); }
     }
 
     .float-card {
@@ -991,7 +900,7 @@
   <!-- NAV -->
   <nav id="navbar">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-gem">💎</div>
+      <div class="nav-logo-gem"><img src="./icon.png" alt="Gemlish" /></div>
       Gemlish
     </a>
     <ul class="nav-links">
@@ -1061,45 +970,15 @@
         </div>
       </div>
 
-      <!-- Phone Mockup -->
+      <!-- Phone Mockup con imágenes reales -->
       <div class="hero-phone-wrap">
         <div class="phone-glow"></div>
-        <div class="phone-mockup">
-          <div class="phone-frame">
-            <div class="phone-screen">
-              <div class="phone-notch"></div>
-              <div class="phone-ui">
-                <div class="phone-header">
-                  <div class="phone-level-badge">Nivel 47</div>
-                  <div class="phone-xp">⚡ 2.840 XP</div>
-                </div>
-                <div class="phone-question">
-                  <div class="phone-question-label">Traduce al inglés</div>
-                  <div class="phone-question-text">¿Cómo se dice "Manzana"?</div>
-                </div>
-                <div class="phone-options">
-                  <div class="phone-option correct">
-                    <div class="phone-option-letter">A</div>Apple
-                  </div>
-                  <div class="phone-option">
-                    <div class="phone-option-letter">B</div>Orange
-                  </div>
-                  <div class="phone-option">
-                    <div class="phone-option-letter">C</div>Banana
-                  </div>
-                  <div class="phone-option">
-                    <div class="phone-option-letter">D</div>Grape
-                  </div>
-                </div>
-                <div style="margin-top:auto;">
-                  <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-                    <span style="font-size:8px;color:var(--muted);">Progreso nivel 47</span>
-                    <span style="font-size:8px;color:var(--primary-light);font-weight:600;">65%</span>
-                  </div>
-                  <div class="phone-progress-bar"><div class="phone-progress-fill"></div></div>
-                </div>
-              </div>
-            </div>
+        <div class="phones-duo">
+          <div class="phone-real phone-back">
+            <img src="./app-level.png" alt="Pantalla de nivel de Gemlish" />
+          </div>
+          <div class="phone-real phone-front">
+            <img src="./app-home.png" alt="Pantalla principal de Gemlish" />
           </div>
         </div>
         <div class="float-card float-card-1">
@@ -1386,7 +1265,7 @@
       <div class="footer-top">
         <div class="footer-brand">
           <a href="#" class="nav-logo">
-            <div class="nav-logo-gem">💎</div>
+            <div class="nav-logo-gem"><img src="./icon.png" alt="Gemlish" /></div>
             Gemlish
           </a>
           <p class="footer-brand-desc">Aprende inglés jugando. 500 niveles progresivos, 100% gratis, sin suscripción. Disponible para Android.</p>
