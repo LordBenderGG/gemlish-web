@@ -3,399 +3,1453 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gemlish — Aprende Inglés Jugando, Gratis</title>
-  <meta name="description" content="Aprende inglés de forma gratuita con Gemlish. 500 niveles, minijuegos, desafíos diarios y sin pagar cursos caros. Disponible en Android." />
+  <title>Gemlish — Aprende Inglés Jugando | 500 Niveles Gratis</title>
+  <meta name="description" content="Aprende inglés de forma gratuita con Gemlish. 500 niveles progresivos, desafíos diarios, sistema de gemas y XP. Sin suscripción, sin tarjeta. 100% gratis para siempre." />
+  <meta name="keywords" content="aprender inglés gratis, inglés jugando, app inglés, vocabulario inglés, gemlish" />
+  <meta property="og:title" content="Gemlish — Aprende Inglés Jugando" />
+  <meta property="og:description" content="500 niveles de inglés. 100% gratis. Sin suscripción." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --primary: #38bdf8;
-      --primary-dark: #0284c7;
-      --bg: #0f172a;
-      --bg2: #1e293b;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --green: #4ade80;
-      --gold: #fbbf24;
+      --primary: #6C63FF;
+      --primary-light: #8B85FF;
+      --primary-dark: #4F46E5;
+      --accent: #38BDF8;
+      --accent2: #4ADE80;
+      --gold: #FBBF24;
+      --bg: #07080F;
+      --bg2: #0D0F1A;
+      --bg3: #111827;
+      --surface: rgba(255,255,255,0.04);
+      --surface2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #F1F5F9;
+      --muted: #94A3B8;
+      --radius: 20px;
     }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 32px;
-      border-bottom: 1px solid #1e293b;
-      position: sticky;
-      top: 0;
-      background: rgba(15,23,42,0.95);
-      backdrop-filter: blur(8px);
-      z-index: 100;
+      padding: 18px 5%;
+      background: rgba(7, 8, 15, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
     }
-    .nav-logo { font-size: 22px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      background: var(--primary);
-      color: #0f172a;
-      padding: 8px 20px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-      text-decoration: none;
-      transition: background .2s;
-    }
-    .nav-cta:hover { background: var(--primary-dark); color: #fff; }
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 80px 24px 60px;
-      max-width: 760px;
-      margin: 0 auto;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--text);
+      letter-spacing: -0.5px;
     }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(56,189,248,0.12);
-      border: 1px solid rgba(56,189,248,0.3);
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 24px;
-      letter-spacing: 0.5px;
-    }
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      margin-bottom: 20px;
-    }
-    .hero h1 span { color: var(--primary); }
-    .hero p {
+
+    .nav-logo-gem {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 18px;
-      color: var(--muted);
-      max-width: 520px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
+      box-shadow: 0 0 20px rgba(108,99,255,0.5);
     }
-    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary {
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark)) !important;
+      color: #fff !important;
+      padding: 10px 22px !important;
+      border-radius: 50px !important;
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 6px 28px rgba(108,99,255,0.55) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-orb1 {
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-orb2 {
+      position: absolute;
+      bottom: -150px; left: -150px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,189,248,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--primary);
-      color: #0f172a;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 16px;
-      text-decoration: none;
-      transition: transform .15s, background .2s;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary-light);
+      margin-bottom: 24px;
     }
-    .btn-primary:hover { transform: translateY(-2px); background: var(--primary-dark); color: #fff; }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent2);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .grad-purple {
+      background: linear-gradient(135deg, var(--primary-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-green {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 8px 32px rgba(108,99,255,0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(108,99,255,0.6);
+    }
+
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--bg2);
+      background: var(--surface2);
+      border: 1px solid var(--border);
       color: var(--text);
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 16px;
       text-decoration: none;
-      border: 1px solid #334155;
-      transition: transform .15s;
+      padding: 16px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
     }
-    .btn-secondary:hover { transform: translateY(-2px); }
 
-    /* STATS BAR */
-    .stats-bar {
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .hero-stats {
       display: flex;
+      gap: 32px;
+    }
+
+    .hero-stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .hero-stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── PHONE MOCKUP ── */
+    .hero-phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .phone-glow {
+      position: absolute;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(108,99,255,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glow-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .phone-mockup {
+      position: relative;
+      width: 260px;
+      animation: float 4s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(2deg); }
+    }
+
+    .phone-frame {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+      border-radius: 40px;
+      padding: 12px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .phone-screen {
+      background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+      border-radius: 30px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+      position: relative;
+    }
+
+    .phone-notch {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 24px;
+      background: #07080F;
+      border-radius: 0 0 16px 16px;
+      z-index: 10;
+    }
+
+    .phone-ui {
+      padding: 32px 16px 16px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .phone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .phone-level-badge {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .phone-xp {
+      font-size: 9px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .phone-question {
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .phone-question-label {
+      font-size: 8px;
+      color: var(--primary-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .phone-question-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .phone-options {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .phone-option {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px 12px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-option.correct {
+      background: rgba(74,222,128,0.15);
+      border-color: rgba(74,222,128,0.4);
+      color: var(--accent2);
+    }
+
+    .phone-option-letter {
+      width: 18px; height: 18px;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .phone-option.correct .phone-option-letter {
+      background: rgba(74,222,128,0.3);
+    }
+
+    .phone-progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .phone-progress-fill {
+      height: 100%;
+      width: 65%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .float-card {
+      position: absolute;
+      background: rgba(13,15,26,0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 3;
+      white-space: nowrap;
+    }
+
+    .float-card-1 {
+      top: 15%; right: -30px;
+      animation: float-c1 4s ease-in-out infinite;
+    }
+
+    .float-card-2 {
+      bottom: 20%; left: -40px;
+      animation: float-c2 5s ease-in-out infinite;
+    }
+
+    @keyframes float-c1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes float-c2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+
+    .float-card-icon { font-size: 20px; }
+    .float-card-title { font-size: 12px; font-weight: 700; color: var(--text); }
+    .float-card-sub { font-size: 10px; color: var(--muted); }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5%; position: relative; }
+
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary-light);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--primary-light);
+      border-radius: 1px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── TRUST BAND ── */
+    .trust-band {
+      padding: 28px 5%;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
       justify-content: center;
       gap: 48px;
-      padding: 40px 24px;
-      border-top: 1px solid #1e293b;
-      border-bottom: 1px solid #1e293b;
       flex-wrap: wrap;
     }
-    .stat { text-align: center; }
-    .stat-number { font-size: 36px; font-weight: 900; color: var(--primary); letter-spacing: -1px; }
-    .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-    /* FEATURES */
-    .section { padding: 72px 24px; max-width: 1000px; margin: 0 auto; }
-    .section-label { font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-    .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-    .section-sub { font-size: 16px; color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 48px; }
-
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .feature-card {
-      background: var(--bg2);
-      border: 1px solid #334155;
-      border-radius: 16px;
-      padding: 28px;
-      transition: border-color .2s, transform .15s;
-    }
-    .feature-card:hover { border-color: var(--primary); transform: translateY(-3px); }
-    .feature-icon { font-size: 36px; margin-bottom: 16px; }
-    .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-    /* COMPARISON */
-    .comparison {
-      background: var(--bg2);
-      border-radius: 20px;
-      padding: 48px 32px;
-      border: 1px solid #334155;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .comparison-title { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 32px; }
-    .comp-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #334155; gap: 16px; }
-    .comp-row:last-child { border-bottom: none; }
-    .comp-feature { font-size: 15px; color: var(--muted); flex: 1; }
-    .comp-col { text-align: center; width: 100px; font-size: 14px; font-weight: 700; }
-    .comp-header { display: flex; justify-content: flex-end; gap: 0; margin-bottom: 8px; }
-    .comp-head { width: 100px; text-align: center; font-size: 13px; font-weight: 700; }
-    .comp-head.gemlish { color: var(--primary); }
-    .comp-head.others { color: var(--muted); }
-    .yes { color: var(--green); }
-    .no { color: #f87171; }
-    .price-tag { color: #f87171; font-size: 13px; }
-
-    /* LEVELS PREVIEW */
-    .levels-preview {
+    .trust-item {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
     }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(108,99,255,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(108,99,255,0.3);
+      background: rgba(108,99,255,0.05);
+    }
+
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-card.featured {
+      background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(56,189,248,0.06));
+      border-color: rgba(108,99,255,0.25);
+      grid-column: span 2;
+    }
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .fi-purple { background: rgba(108,99,255,0.15); }
+    .fi-blue   { background: rgba(56,189,248,0.15); }
+    .fi-green  { background: rgba(74,222,128,0.15); }
+    .fi-gold   { background: rgba(251,191,36,0.15); }
+    .fi-pink   { background: rgba(244,114,182,0.15); }
+    .fi-orange { background: rgba(251,146,60,0.15); }
+
+    .feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-desc { font-size: 15px; color: var(--muted); line-height: 1.6; }
+
+    .feature-card.featured .feature-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .level-bar { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .level-bar-label { font-size: 11px; color: var(--muted); width: 70px; flex-shrink: 0; }
+    .level-bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .level-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--primary), var(--accent)); }
+    .level-bar-num { font-size: 11px; color: var(--primary-light); font-weight: 600; width: 30px; text-align: right; flex-shrink: 0; }
+
+    /* ── HOW IT WORKS ── */
+    .bg2 { background: var(--bg2); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 12.5%; right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+
+    .step-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+
+    .step-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-light);
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(108,99,255,0.3), transparent);
+      z-index: -1;
+    }
+
+    .step-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.3px; }
+    .step-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* ── LEVELS ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 48px;
+    }
+
     .level-chip {
-      background: var(--bg2);
-      border: 1px solid #334155;
-      border-radius: 10px;
-      padding: 10px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .level-chip.unlocked { color: var(--text); border-color: rgba(74,222,128,0.25); background: rgba(74,222,128,0.05); }
+    .level-chip.active { color: var(--primary-light); border-color: rgba(108,99,255,0.4); background: rgba(108,99,255,0.1); box-shadow: 0 0 20px rgba(108,99,255,0.15); }
+
+    .chip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .level-chip.unlocked .chip-dot { background: var(--accent2); }
+    .level-chip.active .chip-dot { background: var(--primary-light); animation: pulse 2s infinite; }
+    .level-chip .chip-dot { background: rgba(255,255,255,0.15); }
+
+    .levels-more {
+      background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(56,189,248,0.05));
+      border: 1px dashed rgba(108,99,255,0.3);
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 13px;
       font-weight: 600;
+      color: var(--primary-light);
+      grid-column: span 2;
     }
-    .level-chip.done { border-color: var(--green); color: var(--green); }
-    .level-chip.active { border-color: var(--primary); color: var(--primary); background: rgba(56,189,248,0.08); }
 
-    /* CTA FINAL */
+    /* ── REWARDS ── */
+    .rewards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 64px;
+    }
+
+    .rewards-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .reward-item { display: flex; gap: 20px; align-items: flex-start; }
+
+    .reward-icon-wrap {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .reward-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .reward-text p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .rewards-visual { display: flex; flex-direction: column; gap: 16px; }
+
+    .xp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .xp-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .xp-card-title { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+    .xp-card-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--gold), #F59E0B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .xp-bar-track { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    .xp-bar-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--gold), #F59E0B); border-radius: 4px; }
+
+    .streak-row { display: flex; gap: 8px; }
+    .streak-day { flex: 1; aspect-ratio: 1; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+    .streak-day.done { background: linear-gradient(135deg, #F59E0B, var(--gold)); color: #000; }
+    .streak-day.today { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #fff; box-shadow: 0 0 12px rgba(108,99,255,0.5); }
+    .streak-day.pending { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+    .gems-row { display: flex; align-items: center; gap: 12px; }
+    .gem-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+
+    /* ── COMPARE ── */
+    .compare-table {
+      margin-top: 64px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .compare-table table { width: 100%; border-collapse: collapse; }
+
+    .compare-table th {
+      padding: 20px 24px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th:nth-child(2) { background: rgba(108,99,255,0.08); color: var(--primary-light); text-align: center; }
+    .compare-table th:nth-child(3) { text-align: center; }
+
+    .compare-table td { padding: 18px 24px; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:nth-child(2) { background: rgba(108,99,255,0.04); text-align: center; font-weight: 600; color: var(--accent2); }
+    .compare-table td:nth-child(3) { text-align: center; color: var(--muted); }
+
+    .check { color: var(--accent2); font-size: 18px; }
+    .cross { color: #EF4444; font-size: 18px; }
+
+    /* ── CTA FINAL ── */
     .cta-section {
+      padding: 120px 5%;
+      background: var(--bg2);
       text-align: center;
-      padding: 80px 24px;
-      background: linear-gradient(135deg, #0f2744 0%, #0a2a1a 100%);
-      border-top: 1px solid #1e3a5f;
+      position: relative;
+      overflow: hidden;
     }
-    .cta-section h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-    .cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 36px; }
-    .price-free { font-size: 48px; font-weight: 900; color: var(--green); letter-spacing: -2px; margin-bottom: 8px; }
-    .price-sub { font-size: 14px; color: var(--muted); margin-bottom: 32px; }
 
-    /* FOOTER */
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
+
+    .cta-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .cta-desc { font-size: 18px; color: var(--muted); margin-bottom: 40px; line-height: 1.7; }
+
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+
+    .cta-note {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
     footer {
-      background: #080f1e;
-      padding: 32px 24px;
-      text-align: center;
-      border-top: 1px solid #1e293b;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 48px 5% 32px;
     }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; }
-    .footer-links a:hover { color: var(--text); }
-    .footer-copy { font-size: 12px; color: #475569; }
 
-    @media (max-width: 600px) {
-      nav { padding: 12px 16px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand { max-width: 280px; }
+    .footer-brand-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-top: 12px; }
+
+    .footer-links-group h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
+    .footer-links-group ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links-group a { text-decoration: none; color: var(--muted); font-size: 14px; transition: color 0.2s; }
+    .footer-links-group a:hover { color: var(--text); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy { font-size: 13px; color: var(--muted); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,8,15,0.98);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { text-decoration: none; color: var(--text); font-size: 24px; font-weight: 600; }
+
+    .mobile-close {
+      position: absolute;
+      top: 24px; right: 24px;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-card.featured { grid-column: span 1; }
+      .feature-card.featured .feature-content { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+      .rewards-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 14px 5%; }
       .nav-links { display: none; }
-      .stats-bar { gap: 24px; }
-      .comparison { padding: 28px 16px; }
+      .hamburger { display: flex; }
+      .hero { padding: 100px 5% 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-phone-wrap { order: -1; }
+      .phone-mockup { width: 200px; }
+      .float-card-1 { right: 10px; }
+      .float-card-2 { left: 10px; }
+      .hero-stats { gap: 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card.featured { grid-column: span 1; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .levels-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+      .footer-top { flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .cta-actions { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <div class="nav-logo">💎 Gemlish</div>
-    <div class="nav-links">
-      <a href="#funciones">Funciones</a>
-      <a href="#niveles">Niveles</a>
-      <a href="./support/">Soporte</a>
-    </div>
-    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.gemlish" target="_blank">Descargar Gratis</a>
+  <nav id="navbar">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-gem">💎</div>
+      Gemlish
+    </a>
+    <ul class="nav-links">
+      <li><a href="#funciones">Funciones</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#niveles">Niveles</a></li>
+      <li><a href="#recompensas">Recompensas</a></li>
+      <li><a href="https://play.google.com/store/apps/details?id=com.gemlish" class="nav-cta" target="_blank">Descargar Gratis</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMenu()">✕</button>
+    <a href="#funciones" onclick="toggleMenu()">Funciones</a>
+    <a href="#como-funciona" onclick="toggleMenu()">Cómo funciona</a>
+    <a href="#niveles" onclick="toggleMenu()">Niveles</a>
+    <a href="#recompensas" onclick="toggleMenu()">Recompensas</a>
+    <a href="https://play.google.com/store/apps/details?id=com.gemlish" class="btn-primary" target="_blank">▶ Descargar Gratis</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">🎮 Aprende jugando · 100% Gratis · Sin internet</div>
-    <h1>Aprende inglés<br/><span>sin pagar un peso</span></h1>
-    <p>500 niveles, minijuegos, desafíos diarios y pronunciación real. Todo gratis, sin suscripciones, sin trampa.</p>
-    <div class="hero-buttons">
-      <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.gemlish" target="_blank">
-        ▶ Descargar en Play Store
-      </a>
-      <a class="btn-secondary" href="#funciones">Ver funciones →</a>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge fade-up">
+          <span class="hero-badge-dot"></span>
+          500 niveles · 100% gratis · Sin suscripción
+        </div>
+        <h1 class="hero-title fade-up d1">
+          Aprende inglés<br/>
+          <span class="grad-purple">jugando,</span><br/>
+          <span class="grad-green">gratis.</span>
+        </h1>
+        <p class="hero-desc fade-up d2">
+          500 niveles progresivos, desafíos diarios, sistema de gemas y XP.
+          Todo el contenido desbloqueado desde el primer día. Sin tarjeta, sin trampa.
+        </p>
+        <div class="hero-actions fade-up d3">
+          <a href="https://play.google.com/store/apps/details?id=com.gemlish" class="btn-primary" target="_blank">
+            ▶ Descargar en Play Store
+          </a>
+          <a href="#funciones" class="btn-secondary">Ver funciones →</a>
+        </div>
+        <div class="hero-stats fade-up d4">
+          <div>
+            <div class="hero-stat-num">500</div>
+            <div class="hero-stat-label">Niveles</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">$0</div>
+            <div class="hero-stat-label">Costo total</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">100%</div>
+            <div class="hero-stat-label">Offline</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">A1→B2</div>
+            <div class="hero-stat-label">Nivel inglés</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone Mockup -->
+      <div class="hero-phone-wrap">
+        <div class="phone-glow"></div>
+        <div class="phone-mockup">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <div class="phone-notch"></div>
+              <div class="phone-ui">
+                <div class="phone-header">
+                  <div class="phone-level-badge">Nivel 47</div>
+                  <div class="phone-xp">⚡ 2.840 XP</div>
+                </div>
+                <div class="phone-question">
+                  <div class="phone-question-label">Traduce al inglés</div>
+                  <div class="phone-question-text">¿Cómo se dice "Manzana"?</div>
+                </div>
+                <div class="phone-options">
+                  <div class="phone-option correct">
+                    <div class="phone-option-letter">A</div>Apple
+                  </div>
+                  <div class="phone-option">
+                    <div class="phone-option-letter">B</div>Orange
+                  </div>
+                  <div class="phone-option">
+                    <div class="phone-option-letter">C</div>Banana
+                  </div>
+                  <div class="phone-option">
+                    <div class="phone-option-letter">D</div>Grape
+                  </div>
+                </div>
+                <div style="margin-top:auto;">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                    <span style="font-size:8px;color:var(--muted);">Progreso nivel 47</span>
+                    <span style="font-size:8px;color:var(--primary-light);font-weight:600;">65%</span>
+                  </div>
+                  <div class="phone-progress-bar"><div class="phone-progress-fill"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <div class="float-card-icon">🔥</div>
+          <div>
+            <div class="float-card-title">Racha de 12 días</div>
+            <div class="float-card-sub">¡Sigue así!</div>
+          </div>
+        </div>
+        <div class="float-card float-card-2">
+          <div class="float-card-icon">💎</div>
+          <div>
+            <div class="float-card-title">+50 Gemas</div>
+            <div class="float-card-sub">Nivel completado</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-number">500</div>
-      <div class="stat-label">Niveles de vocabulario</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">$0</div>
-      <div class="stat-label">Costo total</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Offline — sin internet</div>
-    </div>
-    <div class="stat">
-      <div class="stat-number">A1→B2</div>
-      <div class="stat-label">Niveles de inglés</div>
+  <!-- TRUST BAND -->
+  <div class="trust-band">
+    <div class="trust-inner">
+      <div class="trust-item">✅ Sin suscripción</div>
+      <div class="trust-item">✈️ Funciona offline</div>
+      <div class="trust-item">🔓 Todo desbloqueado</div>
+      <div class="trust-item">🛡️ Sin anuncios intrusivos</div>
+      <div class="trust-item">📱 Solo Android</div>
     </div>
   </div>
 
   <!-- FEATURES -->
-  <section class="section" id="funciones">
-    <div class="section-label">Funciones</div>
-    <h2 class="section-title">Todo lo que necesitas<br/>para aprender inglés</h2>
-    <p class="section-sub">Diseñado para que aprender sea tan entretenido como jugar.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🗺️</div>
-        <div class="feature-title">500 Niveles Progresivos</div>
-        <div class="feature-desc">Desde saludos básicos hasta vocabulario avanzado. Cada nivel desbloquea el siguiente automáticamente.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎮</div>
-        <div class="feature-title">Minijuegos</div>
-        <div class="feature-desc">Ahorcado, memoria, velocidad y más. Aprende sin darte cuenta mientras juegas.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📅</div>
-        <div class="feature-title">Desafío Diario</div>
-        <div class="feature-desc">Un reto nuevo cada día para mantener tu racha activa y ganar XP extra.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔊</div>
-        <div class="feature-title">Pronunciación Real</div>
-        <div class="feature-desc">Escucha cómo se pronuncia cada palabra con el motor de voz nativo de Android.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <div class="feature-title">Progreso Detallado</div>
-        <div class="feature-desc">Mapa de actividad de 90 días, nivel de inglés estimado (A1 a B2) y estadísticas completas.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">✈️</div>
-        <div class="feature-title">100% Sin Internet</div>
-        <div class="feature-desc">Aprende en el metro, en el avión o donde sea. No necesitas conexión a internet.</div>
+  <section id="funciones">
+    <div class="section-inner">
+      <div class="section-label">Funciones</div>
+      <h2 class="section-title fade-up">Todo lo que necesitas<br/>para aprender inglés</h2>
+      <p class="section-desc fade-up d1">Diseñado para que aprender sea tan entretenido como jugar. Cada función tiene un propósito: mantenerte motivado y progresando.</p>
+
+      <div class="features-grid">
+        <div class="feature-card featured fade-up">
+          <div class="feature-content">
+            <div>
+              <div class="feature-icon fi-purple">🗺️</div>
+              <h3 class="feature-title">500 Niveles Progresivos</h3>
+              <p class="feature-desc">Desde saludos básicos (A1) hasta vocabulario de negocios (B2). Cada nivel desbloquea el siguiente automáticamente. Sin barreras de pago.</p>
+            </div>
+            <div>
+              <div class="level-bar"><span class="level-bar-label">Básico A1</span><div class="level-bar-track"><div class="level-bar-fill" style="width:100%"></div></div><span class="level-bar-num">100</span></div>
+              <div class="level-bar"><span class="level-bar-label">Elemental A2</span><div class="level-bar-track"><div class="level-bar-fill" style="width:100%"></div></div><span class="level-bar-num">100</span></div>
+              <div class="level-bar"><span class="level-bar-label">Intermedio B1</span><div class="level-bar-track"><div class="level-bar-fill" style="width:65%"></div></div><span class="level-bar-num">100</span></div>
+              <div class="level-bar"><span class="level-bar-label">Avanzado B2</span><div class="level-bar-track"><div class="level-bar-fill" style="width:20%"></div></div><span class="level-bar-num">100</span></div>
+              <div class="level-bar"><span class="level-bar-label">Experto C1</span><div class="level-bar-track"><div class="level-bar-fill" style="width:0%"></div></div><span class="level-bar-num">100</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card fade-up d1">
+          <div class="feature-icon fi-gold">📅</div>
+          <h3 class="feature-title">Desafío Diario</h3>
+          <p class="feature-desc">Un nuevo reto cada día con recompensas extra de XP y gemas. Mantén tu racha activa y compite en el ranking local.</p>
+        </div>
+
+        <div class="feature-card fade-up d2">
+          <div class="feature-icon fi-green">🔥</div>
+          <h3 class="feature-title">Racha Diaria</h3>
+          <p class="feature-desc">Completa al menos una lección por día para mantener tu racha. La constancia es la clave para dominar un idioma.</p>
+        </div>
+
+        <div class="feature-card fade-up">
+          <div class="feature-icon fi-blue">🧠</div>
+          <h3 class="feature-title">Palabras Difíciles</h3>
+          <p class="feature-desc">El sistema registra tus errores y crea sesiones de práctica personalizadas con las palabras que más se te dificultan.</p>
+        </div>
+
+        <div class="feature-card fade-up d1">
+          <div class="feature-icon fi-pink">📊</div>
+          <h3 class="feature-title">Estadísticas Detalladas</h3>
+          <p class="feature-desc">Mapa de actividad de 90 días, nivel de inglés estimado (A1–B2), tasa de acierto y sesiones de práctica completas.</p>
+        </div>
+
+        <div class="feature-card fade-up d2">
+          <div class="feature-icon fi-orange">🏆</div>
+          <h3 class="feature-title">Logros y Ranking</h3>
+          <p class="feature-desc">Desbloquea más de 20 logros únicos y compite en el ranking local. ¿Quién llega primero al nivel 500?</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- COMPARISON -->
-  <section class="section">
-    <div class="section-label">Comparación</div>
-    <h2 class="section-title">¿Por qué Gemlish?</h2>
-    <p class="section-sub">Compara con los cursos de inglés tradicionales.</p>
-    <div class="comparison">
-      <div class="comp-header">
-        <div style="flex:1"></div>
-        <div class="comp-head gemlish">Gemlish</div>
-        <div class="comp-head others">Cursos</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Precio</div>
-        <div class="comp-col yes">$0 siempre</div>
-        <div class="comp-col price-tag">$50–$300/mes</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Sin internet</div>
-        <div class="comp-col yes">✓</div>
-        <div class="comp-col no">✗</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Aprende jugando</div>
-        <div class="comp-col yes">✓</div>
-        <div class="comp-col no">✗</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Disponible 24/7</div>
-        <div class="comp-col yes">✓</div>
-        <div class="comp-col no">Horarios fijos</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Progreso personalizado</div>
-        <div class="comp-col yes">✓</div>
-        <div class="comp-col no">Limitado</div>
-      </div>
-      <div class="comp-row">
-        <div class="comp-feature">Suscripción obligatoria</div>
-        <div class="comp-col yes">Nunca</div>
-        <div class="comp-col no">Siempre</div>
+  <!-- HOW IT WORKS -->
+  <section id="como-funciona" class="bg2">
+    <div class="section-inner">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title fade-up">Aprende en 4 pasos simples</h2>
+      <p class="section-desc fade-up d1">Sin configuración complicada. Descarga, abre y empieza a aprender en menos de un minuto.</p>
+      <div class="steps-grid">
+        <div class="step-card fade-up">
+          <div class="step-num">1</div>
+          <h3 class="step-title">Descarga gratis</h3>
+          <p class="step-desc">Instala Gemlish desde Google Play. Sin registro obligatorio, sin formularios.</p>
+        </div>
+        <div class="step-card fade-up d1">
+          <div class="step-num">2</div>
+          <h3 class="step-title">Elige tu nivel</h3>
+          <p class="step-desc">Empieza desde el nivel 1 o salta a donde te sientas cómodo. Tú decides el ritmo.</p>
+        </div>
+        <div class="step-card fade-up d2">
+          <div class="step-num">3</div>
+          <h3 class="step-title">Completa lecciones</h3>
+          <p class="step-desc">Responde ejercicios variados: traducción, completar frases, selección múltiple y más.</p>
+        </div>
+        <div class="step-card fade-up d3">
+          <div class="step-num">4</div>
+          <h3 class="step-title">Gana recompensas</h3>
+          <p class="step-desc">Acumula XP, gemas y logros. Mantén tu racha y sube en el ranking local.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LEVELS PREVIEW -->
-  <section class="section" id="niveles">
-    <div class="section-label">Contenido</div>
-    <h2 class="section-title">500 niveles de vocabulario</h2>
-    <p class="section-sub">Organizado por temas para que aprendas de forma natural y progresiva.</p>
-    <div class="levels-preview">
-      <div class="level-chip done">✓ Saludos</div>
-      <div class="level-chip done">✓ Números 1-10</div>
-      <div class="level-chip done">✓ Colores</div>
-      <div class="level-chip active">▶ Animales</div>
-      <div class="level-chip">Familia</div>
-      <div class="level-chip">Comida</div>
-      <div class="level-chip">Cuerpo humano</div>
-      <div class="level-chip">Ropa</div>
-      <div class="level-chip">Casa y hogar</div>
-      <div class="level-chip">Trabajo</div>
-      <div class="level-chip">Viajes</div>
-      <div class="level-chip">Tecnología</div>
-      <div class="level-chip">Negocios</div>
-      <div class="level-chip">+ 487 más…</div>
+  <!-- LEVELS -->
+  <section id="niveles">
+    <div class="section-inner">
+      <div class="section-label">Contenido</div>
+      <h2 class="section-title fade-up">500 niveles de vocabulario</h2>
+      <p class="section-desc fade-up d1">Organizado por temas para que aprendas de forma natural y progresiva.</p>
+      <div class="levels-grid fade-up">
+        <div class="level-chip unlocked"><span class="chip-dot"></span>Saludos</div>
+        <div class="level-chip unlocked"><span class="chip-dot"></span>Números</div>
+        <div class="level-chip unlocked"><span class="chip-dot"></span>Colores</div>
+        <div class="level-chip active"><span class="chip-dot"></span>Animales</div>
+        <div class="level-chip"><span class="chip-dot"></span>Familia</div>
+        <div class="level-chip"><span class="chip-dot"></span>Comida</div>
+        <div class="level-chip"><span class="chip-dot"></span>Cuerpo humano</div>
+        <div class="level-chip"><span class="chip-dot"></span>Ropa</div>
+        <div class="level-chip"><span class="chip-dot"></span>Casa y hogar</div>
+        <div class="level-chip"><span class="chip-dot"></span>Trabajo</div>
+        <div class="level-chip"><span class="chip-dot"></span>Viajes</div>
+        <div class="level-chip"><span class="chip-dot"></span>Tecnología</div>
+        <div class="level-chip"><span class="chip-dot"></span>Negocios</div>
+        <div class="level-chip"><span class="chip-dot"></span>Deportes</div>
+        <div class="level-chip"><span class="chip-dot"></span>Naturaleza</div>
+        <div class="level-chip"><span class="chip-dot"></span>Emociones</div>
+        <div class="level-chip"><span class="chip-dot"></span>Tiempo</div>
+        <div class="level-chip"><span class="chip-dot"></span>Salud</div>
+        <div class="levels-more">✦ + 482 niveles más esperándote</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REWARDS -->
+  <section id="recompensas" class="bg2">
+    <div class="section-inner">
+      <div class="section-label">Sistema de recompensas</div>
+      <h2 class="section-title fade-up">Aprende y gana recompensas</h2>
+      <p class="section-desc fade-up d1">Cada acción tiene su recompensa. El sistema está diseñado para mantenerte motivado día tras día.</p>
+      <div class="rewards-grid">
+        <div class="rewards-list">
+          <div class="reward-item fade-up">
+            <div class="reward-icon-wrap" style="background:rgba(251,191,36,0.15)">⚡</div>
+            <div class="reward-text">
+              <h3>Puntos de Experiencia (XP)</h3>
+              <p>Gana XP al completar niveles, desafíos diarios y sesiones de práctica. Sube de rango y desbloquea títulos exclusivos.</p>
+            </div>
+          </div>
+          <div class="reward-item fade-up d1">
+            <div class="reward-icon-wrap" style="background:rgba(56,189,248,0.15)">💎</div>
+            <div class="reward-text">
+              <h3>Gemas</h3>
+              <p>Las gemas son la moneda de Gemlish. Gana más completando niveles perfectos y desafíos especiales.</p>
+            </div>
+          </div>
+          <div class="reward-item fade-up d2">
+            <div class="reward-icon-wrap" style="background:rgba(251,146,60,0.15)">🔥</div>
+            <div class="reward-text">
+              <h3>Racha de días</h3>
+              <p>Mantén tu racha activa estudiando cada día. Las rachas largas otorgan bonificaciones de XP y gemas.</p>
+            </div>
+          </div>
+          <div class="reward-item fade-up d3">
+            <div class="reward-icon-wrap" style="background:rgba(244,114,182,0.15)">🏆</div>
+            <div class="reward-text">
+              <h3>Logros desbloqueables</h3>
+              <p>Más de 20 logros únicos por alcanzar hitos especiales. Desde completar tu primer nivel hasta llegar al 500.</p>
+            </div>
+          </div>
+        </div>
+        <div class="rewards-visual fade-up d1">
+          <div class="xp-card">
+            <div class="xp-card-header">
+              <span class="xp-card-title">⚡ Experiencia total</span>
+              <span class="xp-card-value">12,480 XP</span>
+            </div>
+            <div class="xp-bar-track"><div class="xp-bar-fill"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;">
+              <span style="font-size:11px;color:var(--muted)">Rango: Explorador</span>
+              <span style="font-size:11px;color:var(--primary-light);font-weight:600">72% → Aventurero</span>
+            </div>
+          </div>
+          <div class="xp-card">
+            <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:12px">🔥 Racha semanal</div>
+            <div class="streak-row">
+              <div class="streak-day done">L</div>
+              <div class="streak-day done">M</div>
+              <div class="streak-day done">X</div>
+              <div class="streak-day done">J</div>
+              <div class="streak-day today">V</div>
+              <div class="streak-day pending">S</div>
+              <div class="streak-day pending">D</div>
+            </div>
+            <div style="font-size:11px;color:var(--muted);margin-top:10px">Racha actual: <strong style="color:var(--gold)">12 días</strong></div>
+          </div>
+          <div class="xp-card">
+            <div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:12px">Tu inventario</div>
+            <div class="gems-row">
+              <div class="gem-item">💎 <span style="color:var(--accent)">340 gemas</span></div>
+              <div class="gem-item" style="margin-left:auto">🏆 <span style="color:var(--gold)">8 logros</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section id="comparar">
+    <div class="section-inner">
+      <div class="section-label">Comparación</div>
+      <h2 class="section-title fade-up">¿Por qué Gemlish?</h2>
+      <p class="section-desc fade-up d1">Compara con los métodos tradicionales de aprendizaje de inglés.</p>
+      <div class="compare-table fade-up">
+        <table>
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>💎 Gemlish</th>
+              <th>Cursos / Apps de pago</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Precio</td><td><strong>$0 para siempre</strong></td><td>$10–$300/mes</td></tr>
+            <tr><td>Funciona sin internet</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+            <tr><td>Todo el contenido desbloqueado</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+            <tr><td>Sin suscripción obligatoria</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+            <tr><td>500 niveles progresivos</td><td><span class="check">✓</span></td><td>Limitado</td></tr>
+            <tr><td>Sistema de recompensas gamificado</td><td><span class="check">✓</span></td><td>Parcial</td></tr>
+            <tr><td>Desafío diario</td><td><span class="check">✓</span></td><td>Solo premium</td></tr>
+            <tr><td>Estadísticas detalladas</td><td><span class="check">✓</span></td><td>Solo premium</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
   <section class="cta-section">
-    <div class="price-free">GRATIS</div>
-    <div class="price-sub">Sin suscripciones · Sin pagos ocultos · Para siempre</div>
-    <h2>Empieza hoy mismo</h2>
-    <p>Únete a miles de personas que ya aprenden inglés con Gemlish.</p>
-    <a class="btn-primary" href="https://play.google.com/store/apps/details?id=com.gemlish" target="_blank" style="font-size:18px; padding:16px 36px;">
-      ▶ Descargar en Google Play
-    </a>
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center">Empieza hoy</div>
+      <h2 class="cta-title fade-up">
+        Tu aventura en inglés<br/>
+        <span class="grad-purple">empieza ahora</span>
+      </h2>
+      <p class="cta-desc fade-up d1">
+        500 niveles esperándote. Sin excusas, sin costos, sin límites.<br/>
+        Descarga Gemlish y empieza el nivel 1 en los próximos 60 segundos.
+      </p>
+      <div class="cta-actions fade-up d2">
+        <a href="https://play.google.com/store/apps/details?id=com.gemlish" class="btn-primary" target="_blank" style="font-size:18px;padding:20px 40px">
+          ▶ Descargar en Google Play
+        </a>
+      </div>
+      <div class="cta-note fade-up d3">
+        <span>✅ 100% gratis</span>
+        <span>✅ Sin registro</span>
+        <span>✅ Sin suscripción</span>
+        <span>✅ Sin tarjeta</span>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-links">
-      <a href="./privacy/">Política de Privacidad</a>
-      <a href="./terms/">Términos y Condiciones</a>
-      <a href="./support/">Soporte</a>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <div class="nav-logo-gem">💎</div>
+            Gemlish
+          </a>
+          <p class="footer-brand-desc">Aprende inglés jugando. 500 niveles progresivos, 100% gratis, sin suscripción. Disponible para Android.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4>App</h4>
+          <ul>
+            <li><a href="#funciones">Funciones</a></li>
+            <li><a href="#niveles">Niveles</a></li>
+            <li><a href="#recompensas">Recompensas</a></li>
+            <li><a href="#como-funciona">Cómo funciona</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="./privacy/">Política de Privacidad</a></li>
+            <li><a href="./terms/">Términos y Condiciones</a></li>
+            <li><a href="./support/">Soporte</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:carlosbetancur1205@gmail.com">carlosbetancur1205@gmail.com</a></li>
+            <li><a href="./support/">Centro de ayuda</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Gemlish · com.gemlish · Todos los derechos reservados</span>
+        <span style="font-size:13px;color:var(--muted)">Hecho con ❤️ para aprender inglés</span>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 Gemlish · com.gemlish · Todos los derechos reservados</div>
   </footer>
 
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.background = window.scrollY > 50
+        ? 'rgba(7, 8, 15, 0.97)'
+        : 'rgba(7, 8, 15, 0.7)';
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const t = document.querySelector(href);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
 </body>
 </html>
